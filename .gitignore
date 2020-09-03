@@ -1,0 +1,7 @@
+*.swp
+env
+db.sqlite3
+auto.test
+Deploy
+__pycache__
+
