@@ -1,0 +1,82 @@
+sudo firewall-cmd --permanent --add-port=8000/tcp
+sudo systemctl restart firewalld
+sudo yum -y install epel-release
+sudo yum -y install python3 python3-pip
+sudo yum -y install git
+sudo yum -y install wget
+sudo yum -y install gcc gcc-c++
+sudo yum -y install zlib zlib-devel openssl-devel
+sudo yum -y install libffi-devel
+sudo yum -y install unzip
+cd ~
+wget https://www.sqlite.org/2019/sqlite-autoconf-3280000.tar.gz
+tar -xzf sqlite-autoconf-3280000.tar.gz
+cd sqlite-autoconf-3280000
+./configure
+make
+sudo make install
+cd ~
+wget https://www.python.org/ftp/python/3.8.3/Python-3.8.3.tgz
+tar -zxf Python-3.8.3.tgz
+Python-3.8.3
+sudo -i
+cd /home/thomass/Python-3.8.3
+LD_RUN_PATH=/usr/local/lib  ./configure --enable-optimizations
+LD_RUN_PATH=/usr/local/lib make altinstall
+exit
+cd
+mkdir simpleisbetterthancomplex.com
+cd simpleisbetterthancomplex.com
+# Part 1 stuff in window #1
+python3.8 -m venv env
+source env/bin/activate
+pip3.8 install Django
+mkdir myproject
+cd myproject
+# Create django project
+django-admin startproject myproject
+# updated project settings.py for ALLOWED_HOSTS
+# start server in window #2
+python3.8 manage.py runserver 0:8080
+# stop server
+# create application #1 in window #1
+cd myproject
+django-admin startapp boards
+# update projects setting.py for INSTALLED_APPS
+# create first view in application #1 views.py
+# update the projects urls.py
+# Part 2 stuff
+# setup models.py for application #1
+# note ForeignKey needs option on_delete=models.{DO_NOTHING,CASCADE}
+# see https://docs.djangoproject.com/en/1.11/ref/models/fields/#django.db.models.ForeignKey
+# Run migrate, create tables
+python3.8 manage.py makemigrations
+python3.8 manage.py migrate
+# update application models.py
+# updated application views.py
+# create project templates dir at same level as manage.py
+# create template home.html
+# update project settings.py to update TEMPLATES DIR
+# do not forget to add import os
+# update application views.py to use template
+# update template home.html
+# create tests for application tests.py and test
+python3.8 manage.py test
+# create project static dir at same level as manage.py
+mkdir -p statics
+# from https://getbootstrap.com/docs/4.0/getting-started/download/#compiled-css-and-js Download the Compiled CSS and JS version
+# get https://github.com/twbs/bootstrap/releases/download/v4.0.0/bootstrap-4.0.0-dist.zip into static/css
+cd static
+wget https://github.com/twbs/bootstrap/releases/download/v4.0.0/bootstrap-4.0.0-dist.zip
+unzip bootstrap-4.0.0-dist.zip
+rm bootstrap-4.0.0-dist.zip
+cd ..
+# update project settings.py add static info
+# update home.html template to use the new css file
+# Update home.html to take advantage of the css
+# create the super admin user
+python3.8 manage.py createsuperuser
+# update the application admin.py to add the application to the admin page
+
+
+
