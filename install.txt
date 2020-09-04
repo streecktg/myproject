@@ -1,3 +1,20 @@
+vi vi /etc/sysctl.conf
+net.ipv6.conf.all.disable_ipv6 = 1
+net.ipv6.conf.default.disable_ipv6 = 1
+# then save
+sysctl -p
+vi /etc/ssh/sshd_config
+Find the line;
+#AddressFamily any
+And. change it to:
+AddressFamily inet
+# then save
+systemctl restart sshd
+vi /etc/postfix/main.cf
+#inet_interfaces = localhost
+inet_interfaces = 127.0.0.1
+# then save
+systemctl restart postfix
 sudo firewall-cmd --permanent --add-port=8000/tcp
 sudo systemctl restart firewalld
 sudo yum -y install epel-release
@@ -31,6 +48,7 @@ cd simpleisbetterthancomplex.com
 python3.8 -m venv env
 source env/bin/activate
 pip3.8 install Django
+pip3.8 install django-widget-tweaks
 mkdir myproject
 cd myproject
 # Create django project
@@ -77,6 +95,82 @@ cd ..
 # create the super admin user
 python3.8 manage.py createsuperuser
 # update the application admin.py to add the application to the admin page
-
-
-
+# update project urls.py
+# update application view.py
+# create template topics.html for view update
+# create more tests and test
+python3.8 manage.py test
+# update application views.py to handle 404's
+# rerun test
+# update the board_topics view
+# update tests and retest (errors)
+# update home.html template
+# retest (good)
+# update tests.py and restest (error)
+# update topics.html
+# retest (good)
+# create base.html template
+# update home.html and topics.html templates to use base
+# retest (good)
+# update base.html
+# update project urls.py
+# update views.py for new view
+# create tmplate for new view
+# add more tests and test
+# update new_topic.html
+# add more tests add test (errors)
+# add application forms.py
+# update application views.py
+# test (good)
+# update new_topic.html
+# update forms.py
+# requires pip3.8 install django-widget-tweaks
+# update project/settings.py for widget
+# update new_topic.html for widget
+# create includes dir under templates
+# add more tests and test
+# Part 4 stuff
+# create application #2
+django-admin startapp accounts
+# update project settings.py with new application
+# update project urls.py
+# update app 2 views.py
+# create signup template
+# update tests.py in app 2 and test (good)
+# create signup forms (views, template, base, signup, form
+# signup logic
+# test
+# add email address to form
+# tests
+mkdir static/img
+# go to https://www.toptal.com/designers/subtlepatterns/ and get a brackground and unzip and put the png into statig/img
+# edit accounts.css
+#logout
+# get compressed, production jQuery 3.2.1 from
+# https://jquery.com/download/
+# at 3.5.1
+wget --inet4-only https://code.jquery.com/jquery-3.5.1.min.js
+# put into static/js
+# get Popper at https://popper.js.org/
+# new version of popper does not have a download
+# use <script src="https://unpkg.com/@popperjs/core@^2.0.0"></script>
+# or download https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js
+# update base.html
+# update project url's for login
+# update project setting.py
+# create login template
+# refactor templates
+# update form.html template to fix login in issue
+# create custome template tags
+# create dir templatetags under the application 1 dir
+# restart serever
+# test templatetags
+# run tests (good)
+# password reset
+# add EMAIL_BACKEND to project settings.py
+# and add SMTP server info (will not be used unless EMAIL_BACKEND is commented out)
+# update project urls.py
+# password_reset.html template
+# create tests
+# setup email stuff
+# see https://stackoverflow.com/questions/33195214/django-error-reverse-for-password-reset-confirm-with-arguments-and-keyw for fix to urls.py

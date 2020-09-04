@@ -2,12 +2,12 @@ from django.urls import reverse
 from django.urls import resolve
 # deprecated in 2.0 Django#from django.core.urlresolvers import reverse
 from django.test import TestCase
-from .views import home, board_topics, new_topic
-from .models import Board
+from ..views import home, board_topics, new_topic
+from ..models import Board
 
 from django.contrib.auth.models import User
-from .models import Topic, Post
-from .forms import NewTopicForm
+from ..models import Topic, Post
+from ..forms import NewTopicForm
 
 class HomeTests(TestCase):
     def setUp(self):

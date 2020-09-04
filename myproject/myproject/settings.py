@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'widget_tweaks',
+    'accounts',
     'boards',
 ]
 
@@ -128,4 +129,16 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
 
+LOGOUT_REDIRECT_URL = 'home'
+
+LOGIN_REDIRECT_URL = 'home'
+LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = "10.0.0.155"
+EMAIL_PORT = 1025
+##EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
+##EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
+##EMAIL_USE_TLS = True
 
